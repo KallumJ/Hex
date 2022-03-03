@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="mainMenuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="hex.menus.controllers.MainMenuController">
+    <Label layoutX="239.0" layoutY="14.0" text="Hex" textAlignment="CENTER">
+        <font>
+            <Font size="72.0"/>
+        </font>
+    </Label>
+    <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="128.0" prefHeight="200.0"
+          prefWidth="100.0" spacing="10.0">
+        <opaqueInsets>
+            <Insets/>
+        </opaqueInsets>
+        <Button mnemonicParsing="false" onAction="#playButtonClicked" text="Play"/>
+        <Button mnemonicParsing="false" onAction="#exitButtonClicked" text="Exit Game"/>
+    </VBox>
+</VBox>

@@ -2,16 +2,24 @@ package hex;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import hex.menus.MenuFactory;
 
 public class Hex extends GameApplication {
-    @Override
-    protected void initSettings(GameSettings settings) {
-        settings.setWidth(720);
-        settings.setHeight(1280);
-        settings.setTitle("hex.Hex");
-    }
+    private static final int HEIGHT = 720;
+    private static final int WIDTH = 1280;
+    private static final String TITLE = "Hex";
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    protected void initSettings(GameSettings settings) {
+        settings.setWidth(WIDTH);
+        settings.setHeight(HEIGHT);
+        settings.setTitle(TITLE);
+        settings.setMainMenuEnabled(true);
+
+        settings.setSceneFactory(new MenuFactory());
     }
 }
