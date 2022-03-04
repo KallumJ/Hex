@@ -9,16 +9,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- * Entity factory for producing entities
+ * Entity factory for producing Player entities
  */
-public class HexEntityFactory implements EntityFactory {
-    public static final String PLAYER_KEY = "player";
+public class PlayerFactory implements EntityFactory {
+    public static final String KEY = "player";
 
-    @Spawns(PLAYER_KEY)
-    public Entity spawnPlayer(SpawnData data) {
+    @Spawns(KEY)
+    public Entity buildPlayer(SpawnData data) {
         return FXGL.entityBuilder(data)
                 .view(new Rectangle(100, 100, Color.RED))
                 .type(EntityType.PLAYER)
                 .buildAndAttach();
-     }
+    }
 }

@@ -4,7 +4,7 @@ package hex.entities;
  * An enum to collect all the entity types in Hex
  */
 public enum EntityType {
-    PLAYER(HexEntityFactory.PLAYER_KEY);
+    PLAYER(PlayerFactory.KEY);
 
 
     private final String key;
