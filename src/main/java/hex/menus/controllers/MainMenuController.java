@@ -13,7 +13,7 @@ public class MainMenuController {
 
     @FXML
     private void playButtonClicked() {
-        FXGL.getGameController().gotoPlay();
+        FXGL.getGameController().startNewGame();
     }
 
     @FXML
