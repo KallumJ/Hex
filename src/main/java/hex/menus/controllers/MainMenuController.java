@@ -13,12 +13,12 @@ public class MainMenuController {
 
     @FXML
     private void playButtonClicked() {
-        System.out.println("TEST");
+        FXGL.getGameController().gotoPlay();
     }
 
     @FXML
     private void exitButtonClicked() {
-        System.exit(0);
+        FXGL.getGameController().exit();
     }
 
     @FXML
