@@ -9,7 +9,8 @@ import javafx.geometry.Point2D;
 public class EntityManager {
     /**
      * Spawns an entity of the specified type at the specified location
-     * @param type the entity type
+     *
+     * @param type     the entity type
      * @param location where to spawn them
      */
     public static void spawnEntity(EntityType type, Point2D location) {

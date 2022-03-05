@@ -11,6 +11,7 @@ public class ResourceUtils {
 
     /**
      * Gets the file in the resources dir as a URL
+     *
      * @param path the path in the resources dir
      * @return the URL in the resources dir of the provided file
      */

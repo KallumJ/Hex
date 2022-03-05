@@ -16,6 +16,7 @@ public class MenuUtils {
 
     /**
      * Gets the URL of the provided FXML file
+     *
      * @param path the name of the fxml file in the FXML_PATH dir
      * @return the URL of the found file
      */
@@ -25,6 +26,7 @@ public class MenuUtils {
 
     /**
      * Load the provided FXML file
+     *
      * @param fxml the name of the fxml file in the FXML_PATH dir
      * @return the loaded FXML content
      */

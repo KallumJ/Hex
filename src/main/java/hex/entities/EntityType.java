@@ -9,6 +9,7 @@ public enum EntityType {
 
 
     private final String key;
+
     EntityType(String key) {
         this.key = key;
     }

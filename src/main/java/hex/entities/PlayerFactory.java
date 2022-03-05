@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.component.Component;
+import com.almasb.fxgl.entity.components.CollidableComponent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -20,8 +21,9 @@ public class PlayerFactory implements EntityFactory {
     @Spawns(KEY)
     public Entity buildPlayer(SpawnData data) {
         return FXGL.entityBuilder(data)
-                .view(new Rectangle(100, 100, Color.RED))
                 .type(EntityType.PLAYER)
+                .viewWithBBox(new Rectangle(100, 100, Color.RED))
+                .with(new CollidableComponent(true))
                 .with(new PlayerBehaviour())
                 .build();
     }
@@ -31,7 +33,7 @@ public class PlayerFactory implements EntityFactory {
  * A class to provide behaviour to the player entity
  */
 class PlayerBehaviour extends Component {
-    private static final int MOVE_DELTA = 2;
+    private static final int MOVE_DELTA = 5;
 
     // Register key events
     PlayerBehaviour() {
