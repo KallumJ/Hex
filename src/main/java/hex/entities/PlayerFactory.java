@@ -17,12 +17,13 @@ import javafx.scene.shape.Rectangle;
  */
 public class PlayerFactory implements EntityFactory {
     public static final String KEY = "player";
+    private static final String IMG = "player.png";
 
     @Spawns(KEY)
     public Entity buildPlayer(SpawnData data) {
         return FXGL.entityBuilder(data)
                 .type(EntityType.PLAYER)
-                .viewWithBBox(new Rectangle(100, 100, Color.RED))
+                .viewWithBBox(IMG)
                 .with(new CollidableComponent(true))
                 .with(new PlayerBehaviour())
                 .build();
@@ -33,7 +34,7 @@ public class PlayerFactory implements EntityFactory {
  * A class to provide behaviour to the player entity
  */
 class PlayerBehaviour extends Component {
-    private static final int MOVE_DELTA = 5;
+    private static final int MOVE_DELTA = 2;
 
     // Register key events
     PlayerBehaviour() {
