@@ -11,8 +11,8 @@ import javafx.geometry.Point2D;
 
 
 public class Hex extends GameApplication {
-    private static final int HEIGHT = 1080;
-    private static final int WIDTH = 1920;
+    public static final int HEIGHT = 1280;
+    public static final int WIDTH = 1920;
     private static final String TITLE = "Hex";
 
     public static void main(String[] args) {
@@ -31,8 +31,12 @@ public class Hex extends GameApplication {
 
     @Override
     protected void initGame() {
+        FXGL.setLevelFromMap("map.tmx");
+
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
 
         EntityManager.spawnEntity(EntityType.PLAYER, new Point2D(700, 700));
+
+
     }
 }
