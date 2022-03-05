@@ -3,6 +3,7 @@ package hex;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
+import hex.entities.EnemyFactory;
 import hex.entities.EntityManager;
 import hex.entities.EntityType;
 import hex.entities.PlayerFactory;
@@ -34,9 +35,11 @@ public class Hex extends GameApplication {
         FXGL.setLevelFromMap("map.tmx");
 
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
+        FXGL.getGameWorld().addEntityFactory(new EnemyFactory());
 
         EntityManager.spawnEntity(EntityType.PLAYER, new Point2D(700, 700));
 
-
+        WaveManager waveManager = new WaveManager();
+        waveManager.generateWave();
     }
 }
