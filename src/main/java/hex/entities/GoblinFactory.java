@@ -10,13 +10,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
-public class EnemyFactory implements EntityFactory {
-    public static final String KEY = "enemy";
+public class GoblinFactory implements EntityFactory {
+    public static final String KEY = "goblin";
 
     @Spawns(KEY)
-    public Entity buildEnemy(SpawnData data) {
+    public Entity buildGoblin(SpawnData data) {
         return FXGL.entityBuilder(data)
-                .type(EntityType.ENEMY)
+                .type(EntityType.GOBLIN)
                 .viewWithBBox(new Rectangle(20, 20, Color.BLUE))
                 .with(new CollidableComponent(true))
                 .build();

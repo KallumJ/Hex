@@ -60,7 +60,7 @@ public class WaveManager {
     }
 
     private EntityType generateRandomEnemy() {
-        EntityType[] allowedEntities = new EntityType[]{EntityType.ENEMY};
+        EntityType[] allowedEntities = new EntityType[]{EntityType.GOBLIN};
         int selectedEntity = FXGL.random(0, allowedEntities.length - 1);
         return allowedEntities[selectedEntity];
     }

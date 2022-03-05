@@ -5,7 +5,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.physics.PhysicsWorld;
 import hex.entities.*;
-import hex.entities.collisions.PlayerEnemyCollider;
+import hex.entities.collisions.PlayerGoblinCollider;
 import hex.menus.MenuFactory;
 import javafx.geometry.Point2D;
 import javafx.scene.text.Text;
@@ -35,7 +35,7 @@ public class Hex extends GameApplication {
     protected void initPhysics() {
         PhysicsWorld physicsWorld = FXGL.getPhysicsWorld();
 
-        physicsWorld.addCollisionHandler(new PlayerEnemyCollider());
+        physicsWorld.addCollisionHandler(new PlayerGoblinCollider());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Hex extends GameApplication {
         FXGL.setLevelFromMap("map.tmx");
 
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
-        FXGL.getGameWorld().addEntityFactory(new EnemyFactory());
+        FXGL.getGameWorld().addEntityFactory(new GoblinFactory());
 
         EntityManager.spawnEntity(EntityType.PLAYER, new Point2D(700, 700));
 
