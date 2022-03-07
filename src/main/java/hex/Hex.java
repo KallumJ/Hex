@@ -49,7 +49,8 @@ public class Hex extends GameApplication {
     protected void initGame() {
         FXGL.setLevelFromMap("map.tmx");
 
-        FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
+        Player player = new Player();
+        FXGL.getGameWorld().addEntityFactory(player);
         FXGL.getGameWorld().addEntityFactory(new GoblinFactory());
 
         EntityManager.spawnEntity(EntityType.PLAYER, new Point2D(700, 700));

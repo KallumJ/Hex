@@ -5,7 +5,7 @@ package hex.entities;
  */
 public enum EntityType {
     GOBLIN(GoblinFactory.KEY),
-    PLAYER(PlayerFactory.KEY);
+    PLAYER(Player.KEY);
 
 
     private final String key;
