@@ -45,7 +45,7 @@ public class WaveManager {
             int x = FXGL.random(0, Hex.WIDTH);
             int y = FXGL.random(0, Hex.HEIGHT);
 
-            EntityManager.spawnEntity(entity, new Point2D(x, y));
+            FXGL.spawn(entity.toString(), new Point2D(x, y));
         }
 
 

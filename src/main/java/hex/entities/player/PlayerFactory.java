@@ -24,6 +24,8 @@ public class PlayerFactory implements EntityFactory {
                 .with(new CollidableComponent(true))
                 .with(new PlayerMoveableComponent())
                 .with(new PlayerFacingComponent())
+                .with(new PlayerSpellInventoryComponent())
+                .with(new PlayerCastingComponent())
                 .build();
     }
 }
