@@ -27,6 +27,9 @@ public class PlayerMoveableComponent extends Component {
 
     public void moveRight() {
         getEntity().translateX(MOVE_DELTA);
+
+        // Flip texture to face direction of movement
+        getEntity().setScaleX(1);
     }
 
     public void moveUp() {
@@ -35,6 +38,9 @@ public class PlayerMoveableComponent extends Component {
 
     public void moveLeft() {
         getEntity().translateX(-MOVE_DELTA);
+
+        // Flip texture to face direction of movement
+        getEntity().setScaleX(-1);
     }
 
     public void moveDown() {
