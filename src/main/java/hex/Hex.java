@@ -6,6 +6,8 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.physics.PhysicsWorld;
 import hex.entities.*;
 import hex.entities.collisions.PlayerGoblinCollider;
+import hex.entities.goblin.GoblinFactory;
+import hex.entities.player.PlayerFactory;
 import hex.menus.MenuFactory;
 import javafx.geometry.Point2D;
 import javafx.scene.text.Text;
@@ -47,11 +49,10 @@ public class Hex extends GameApplication {
 
     @Override
     protected void initGame() {
-        FXGL.setLevelFromMap("map.tmx");
-
-        Player player = new Player();
-        FXGL.getGameWorld().addEntityFactory(player);
+        FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
         FXGL.getGameWorld().addEntityFactory(new GoblinFactory());
+
+        FXGL.setLevelFromMap("map.tmx");
 
         EntityManager.spawnEntity(EntityType.PLAYER, new Point2D(700, 700));
 
