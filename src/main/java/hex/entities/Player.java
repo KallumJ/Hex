@@ -7,17 +7,9 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.entity.components.CollidableComponent;
-import com.almasb.fxgl.input.Input;
-import com.almasb.fxgl.input.InputModifier;
-import com.almasb.fxgl.input.UserAction;
-import hex.util.PressedKeySet;
 import javafx.geometry.Point2D;
-import javafx.geometry.Point3D;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 
 /**
@@ -27,6 +19,7 @@ public class Player implements EntityFactory {
     public static final String KEY = "player";
     private static final String IMG = "player.png";
 
+    private Facing facing = Facing.RIGHT;
 
     @Spawns(KEY)
     public Entity buildPlayer(SpawnData data) {
@@ -34,8 +27,16 @@ public class Player implements EntityFactory {
                 .type(EntityType.PLAYER)
                 .viewWithBBox(IMG)
                 .with(new CollidableComponent(true))
-                .with(new PlayerBehaviour())
+                .with(new PlayerBehaviour(this))
                 .build();
+    }
+
+    public void setFacing(Facing facing) {
+        this.facing = facing;
+    }
+
+    public Facing getFacing() {
+        return facing;
     }
 }
 
@@ -43,118 +44,75 @@ public class Player implements EntityFactory {
  * A class to provide behaviour to the player entity
  */
 class PlayerBehaviour extends Component {
+    // Assigned movement keys
     private static final KeyCode RIGHT_KEY = KeyCode.D;
     private static final KeyCode UP_KEY = KeyCode.W;
     private static final KeyCode LEFT_KEY = KeyCode.A;
     private static final KeyCode DOWN_KEY = KeyCode.S;
-    private static final int MOVE_DELTA = 2;
 
-    private final PressedKeySet pressedKeys;
-    private Facing facing = Facing.RIGHT;
+    private static final int MOVE_DELTA = 2; // pixels moved per movement
+    private static final int CHECK_FACING_INTERVAL = 10; // in ms
 
+    private Point2D prevPos;
+    private final Player player;
 
     // Register key events
-    PlayerBehaviour() {
-        this.pressedKeys = new PressedKeySet();
+    PlayerBehaviour(Player player) {
+        this.player = player;
 
-        Input gameInput = FXGL.getInput();
+        FXGL.onKey(UP_KEY, this::moveUp);
+        FXGL.onKey(DOWN_KEY, this::moveDown);
+        FXGL.onKey(LEFT_KEY, this::moveLeft);
+        FXGL.onKey(RIGHT_KEY, this::moveRight);
 
-        gameInput.addAction(new UserAction("Move Right") {
-            @Override
-            protected void onActionBegin() {
-                pressedKeys.add(RIGHT_KEY);
-            }
-
-            @Override
-            protected void onActionEnd() {
-                pressedKeys.remove(RIGHT_KEY);
-            }
-        }, RIGHT_KEY);
-
-        gameInput.addAction(new UserAction("Move Up") {
-            @Override
-            protected void onActionBegin() {
-                pressedKeys.add(UP_KEY);
-            }
-
-            @Override
-            protected void onActionEnd() {
-                pressedKeys.remove(UP_KEY);
-            }
-        }, UP_KEY);
-
-        gameInput.addAction(new UserAction("Move Down") {
-            @Override
-            protected void onActionBegin() {
-                pressedKeys.add(DOWN_KEY);
-            }
-
-            @Override
-            protected void onActionEnd() {
-                pressedKeys.remove(DOWN_KEY);
-            }
-        }, DOWN_KEY);
-
-        gameInput.addAction(new UserAction("Move Left") {
-            @Override
-            protected void onActionBegin() {
-                pressedKeys.add(LEFT_KEY);
-            }
-
-            @Override
-            protected void onActionEnd() {
-                pressedKeys.remove(LEFT_KEY);
-            }
-        }, LEFT_KEY);
-
-        FXGL.run(this::movePlayer, Duration.millis(10));
-    }
-
-    private void movePlayer() {
-        facing = determineFacing();
-
-        switch (facing) {
-            case UP -> moveUp();
-            case DOWN -> moveDown();
-            case LEFT -> moveLeft();
-            case RIGHT -> moveRight();
-            case DOWN_LEFT -> moveDownLeft();
-            case DOWN_RIGHT -> moveDownRight();
-            case UP_LEFT -> moveUpLeft();
-            case UP_RIGHT -> moveUpRight();
-        }
+        FXGL.run(() -> player.setFacing(determineFacing()), Duration.millis(CHECK_FACING_INTERVAL));
     }
 
     private Facing determineFacing() {
-        KeyCode key1 = pressedKeys.getKey1();
-        KeyCode key2 = pressedKeys.getKey2();
-        List<KeyCode> keys = pressedKeys.getPressedKeys();
+        // Get the players current position
+        Point2D currentPos = getEntity().getPosition();
 
-        if (key1 != null) {
-            if (key1.equals(key2)) {
-                if (key1.equals(UP_KEY)) {
-                    return Facing.UP;
-                } else if (key1.equals(DOWN_KEY)) {
-                    return Facing.DOWN;
-                } else if (key1.equals(LEFT_KEY)) {
-                    return Facing.LEFT;
-                } else {
-                    return Facing.RIGHT;
-                }
-            } else {
-                if (keys.contains(UP_KEY) && keys.contains(RIGHT_KEY)) {
-                    return Facing.UP_RIGHT;
-                } else if (keys.contains(UP_KEY) && keys.contains(LEFT_KEY)) {
-                    return Facing.UP_LEFT;
-                } else if (keys.contains(DOWN_KEY) && keys.contains(RIGHT_KEY)) {
-                    return Facing.DOWN_RIGHT;
-                } else {
-                    return Facing.DOWN_LEFT;
-                }
-            }
+        // If there is no previous movement, set it to this
+        if (prevPos == null) {
+            prevPos = currentPos;
         }
 
-        return facing;
+        // Get the difference between the previous pos and the current pos
+        Point2D diff = currentPos.subtract(prevPos);
+
+        // Set the previous pos to this ps
+        prevPos = currentPos;
+
+        // Determine which direction the player is facing based on the pixels difference since last prev position
+        double diffX = diff.getX();
+        double diffY = diff.getY();
+
+        if (diffY < 0) {
+            if (diffX == 0) {
+                return Facing.UP;
+            } else if (diffX > 0) {
+                return Facing.UP_RIGHT;
+            } else {
+                return Facing.UP_LEFT;
+            }
+        } else if (diffY > 0) {
+            if (diffX == 0) {
+                return Facing.DOWN;
+            } else if (diffX > 0) {
+                return Facing.DOWN_RIGHT;
+            } else {
+                return Facing.DOWN_LEFT;
+            }
+        } else {
+            if (diffX < 0) {
+                return Facing.LEFT;
+            } else if (diffX > 0) {
+                return Facing.RIGHT;
+            } else {
+                // If player has not moved, they are facing whatever direction they were previously
+                return player.getFacing();
+            }
+        }
     }
 
     public void moveRight() {
@@ -171,25 +129,5 @@ class PlayerBehaviour extends Component {
 
     public void moveDown() {
         getEntity().translateY(MOVE_DELTA);
-    }
-
-    public void moveUpLeft() {
-        getEntity().translateY(-MOVE_DELTA);
-        getEntity().translateX(-MOVE_DELTA);
-    }
-
-    public void moveUpRight() {
-        getEntity().translateY(-MOVE_DELTA);
-        getEntity().translateX(MOVE_DELTA);
-    }
-
-    public void moveDownLeft() {
-        getEntity().translateY(MOVE_DELTA);
-        getEntity().translateX(-MOVE_DELTA);
-    }
-
-    public void moveDownRight() {
-        getEntity().translateY(MOVE_DELTA);
-        getEntity().translateX(MOVE_DELTA);
     }
 }
