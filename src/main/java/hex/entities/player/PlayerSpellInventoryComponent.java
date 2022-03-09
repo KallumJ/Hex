@@ -3,7 +3,6 @@ package hex.entities.player;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import hex.entities.spells.fireball.SpellType;
-
 import javafx.scene.input.ScrollEvent;
 
 import java.util.ArrayList;

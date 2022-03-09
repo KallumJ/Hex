@@ -42,11 +42,11 @@ public class PlayerWrapper {
         };
     }
 
-    public void setCastingTowardsPoint(Point2D point) {
-        this.castingTowards = point;
-    }
-
     public Point2D getCastingTowardsPoint() {
         return castingTowards;
+    }
+
+    public void setCastingTowardsPoint(Point2D point) {
+        this.castingTowards = point;
     }
 }

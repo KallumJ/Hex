@@ -5,7 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="mainMenuVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="mainMenuVBox" alignment="TOP_CENTER" maxHeight="-Infinity"
+      maxWidth="-Infinity"
       minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
       xmlns="http://javafx.com/javafx/16" fx:controller="hex.menus.controllers.MainMenuController">
     <Label layoutX="239.0" layoutY="14.0" text="Hex" textAlignment="CENTER">

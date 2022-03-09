@@ -16,8 +16,8 @@ import javafx.scene.shape.Circle;
  */
 public class FireballFactory implements EntityFactory {
     public static final String KEY = "fireball";
-    private static final int SPEED = 1000;
     public static final int DAMAGE = 4;
+    private static final int SPEED = 1000;
 
     @Spawns(KEY)
     public Entity buildFireball(SpawnData data) {

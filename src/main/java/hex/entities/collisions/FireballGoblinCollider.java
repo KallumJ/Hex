@@ -17,7 +17,7 @@ public class FireballGoblinCollider extends CollisionHandler {
 
     @Override
     protected void onCollisionBegin(Entity fireball, Entity goblin) {
-        // Once fireball has hit an entity, we dont want it progresing further
+        // Once fireball has hit an entity, we don't want it progressing further
         fireball.removeFromWorld();
 
         // Damage the goblin
