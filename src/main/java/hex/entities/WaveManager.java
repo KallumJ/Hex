@@ -30,6 +30,7 @@ public class WaveManager {
         currentWaveText.setTranslateY(100);
         currentWaveText.setStyle("-fx-font-size: 32");
 
+        // Use executor service as FXGL hasnt been initalised yet
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(() -> currentWaveText.setText(String.format(CURRENT_WAVE_STR, currentWave)), 0, 500, TimeUnit.MILLISECONDS);
     }
