@@ -8,7 +8,8 @@ import hex.entities.player.PlayerFactory;
  */
 public enum EntityType {
     GOBLIN(GoblinFactory.KEY),
-    PLAYER(PlayerFactory.KEY);
+    PLAYER(PlayerFactory.KEY),
+    ENEMY("enemy");
 
 
     private final String key;

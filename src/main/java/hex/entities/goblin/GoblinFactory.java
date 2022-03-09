@@ -20,6 +20,7 @@ public class GoblinFactory implements EntityFactory {
     public Entity buildGoblin(SpawnData data) {
         return FXGL.entityBuilder(data)
                 .type(EntityType.GOBLIN)
+                .type(EntityType.ENEMY)
                 .viewWithBBox(new Rectangle(20, 20, Color.BLUE))
                 .with(new CollidableComponent(true))
                 .build();

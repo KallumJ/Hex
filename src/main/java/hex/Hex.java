@@ -5,7 +5,7 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.physics.PhysicsWorld;
 import hex.entities.*;
-import hex.entities.collisions.PlayerGoblinCollider;
+import hex.entities.collisions.FireballEnemyCollider;
 import hex.entities.goblin.GoblinFactory;
 import hex.entities.player.PlayerFactory;
 import hex.entities.player.PlayerWrapper;
@@ -44,7 +44,7 @@ public class Hex extends GameApplication {
     protected void initPhysics() {
         PhysicsWorld physicsWorld = FXGL.getPhysicsWorld();
 
-        physicsWorld.addCollisionHandler(new PlayerGoblinCollider());
+        physicsWorld.addCollisionHandler(new FireballEnemyCollider());
     }
 
     @Override
