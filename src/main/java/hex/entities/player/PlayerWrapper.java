@@ -2,7 +2,7 @@ package hex.entities.player;
 
 import com.almasb.fxgl.entity.Entity;
 import hex.entities.Facing;
-import hex.entities.spells.fireball.SpellType;
+import hex.entities.spells.SpellType;
 import javafx.geometry.Point2D;
 
 /**

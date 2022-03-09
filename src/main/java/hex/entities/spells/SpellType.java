@@ -1,4 +1,6 @@
-package hex.entities.spells.fireball;
+package hex.entities.spells;
+
+import hex.entities.spells.fireball.FireballFactory;
 
 /**
  * An enum to catalog types of spells in Hex

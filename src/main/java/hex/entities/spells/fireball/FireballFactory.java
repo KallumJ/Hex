@@ -8,6 +8,7 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import hex.Hex;
+import hex.entities.spells.SpellType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 

@@ -4,8 +4,8 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.physics.CollisionHandler;
 import hex.entities.EntityType;
 import hex.entities.goblin.GoblinWrapper;
+import hex.entities.spells.SpellType;
 import hex.entities.spells.fireball.FireballFactory;
-import hex.entities.spells.fireball.SpellType;
 
 /**
  * A collision handler for handling what happens when fireballs hit enemies

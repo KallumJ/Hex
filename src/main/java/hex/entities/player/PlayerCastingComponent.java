@@ -3,7 +3,7 @@ package hex.entities.player;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import hex.Hex;
-import hex.entities.spells.fireball.SpellType;
+import hex.entities.spells.SpellType;
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 
