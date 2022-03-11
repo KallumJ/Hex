@@ -4,9 +4,10 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.physics.PhysicsWorld;
+import hex.entities.EnemyType;
 import hex.entities.EntityType;
 import hex.entities.WaveManager;
-import hex.entities.collisions.FireballGoblinCollider;
+import hex.entities.collisions.FireballEnemyCollider;
 import hex.entities.goblin.GoblinFactory;
 import hex.entities.player.PlayerFactory;
 import hex.entities.player.PlayerWrapper;
@@ -46,7 +47,10 @@ public class Hex extends GameApplication {
     protected void initPhysics() {
         PhysicsWorld physicsWorld = FXGL.getPhysicsWorld();
 
-        physicsWorld.addCollisionHandler(new FireballGoblinCollider());
+        for (EnemyType enemyType : EnemyType.values()) {
+            physicsWorld.addCollisionHandler(new FireballEnemyCollider(enemyType));
+        }
+
     }
 
     @Override

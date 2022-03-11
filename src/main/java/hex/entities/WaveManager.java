@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class WaveManager {
     private static final String CURRENT_WAVE_STR = "Current Wave: %d";
-    private final List<EntityType> enemiesInWave;
+    private final List<EnemyType> enemiesInWave;
     private final Text currentWaveText;
     private int currentWave;
 
@@ -42,7 +42,7 @@ public class WaveManager {
             enemiesInWave.add(generateRandomEnemy());
         }
 
-        for (EntityType entity : enemiesInWave) {
+        for (EnemyType entity : enemiesInWave) {
             int x = FXGL.random(0, Hex.WIDTH);
             int y = FXGL.random(0, Hex.HEIGHT);
 
@@ -60,8 +60,8 @@ public class WaveManager {
         }, Duration.millis(500));
     }
 
-    private EntityType generateRandomEnemy() {
-        EntityType[] allowedEntities = new EntityType[]{EntityType.GOBLIN};
+    private EnemyType generateRandomEnemy() {
+        EnemyType[] allowedEntities = new EnemyType[]{EnemyType.GOBLIN};
         int selectedEntity = FXGL.random(0, allowedEntities.length - 1);
         return allowedEntities[selectedEntity];
     }
@@ -76,8 +76,8 @@ public class WaveManager {
     }
 
     public void removeEntity(Entity entity) {
-        EntityType entityType = (EntityType) entity.getType();
-        enemiesInWave.remove(entityType);
+        EnemyType enemyType = (EnemyType) entity.getType();
+        enemiesInWave.remove(enemyType);
         entity.removeFromWorld();
     }
 }

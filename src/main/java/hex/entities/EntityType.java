@@ -1,13 +1,11 @@
 package hex.entities;
 
-import hex.entities.goblin.GoblinFactory;
 import hex.entities.player.PlayerFactory;
 
 /**
- * An enum to collect all the entity types in Hex
+ * An enum to collect all general entity in Hex
  */
 public enum EntityType {
-    GOBLIN(GoblinFactory.KEY),
     PLAYER(PlayerFactory.KEY);
 
     private final String key;

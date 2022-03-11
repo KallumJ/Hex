@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.components.CollidableComponent;
+import hex.entities.EnemyType;
 import hex.entities.EntityHealthComponent;
 import hex.entities.EntityType;
 import javafx.scene.paint.Color;
@@ -21,7 +22,7 @@ public class GoblinFactory implements EntityFactory {
     @Spawns(KEY)
     public Entity buildGoblin(SpawnData data) {
         return FXGL.entityBuilder(data)
-                .type(EntityType.GOBLIN)
+                .type(EnemyType.GOBLIN)
                 .viewWithBBox(new Rectangle(20, 20, Color.BLUE))
                 .with(new CollidableComponent(true))
                 .with(new EntityHealthComponent(HEALTH))
