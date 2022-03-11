@@ -4,6 +4,7 @@ import com.almasb.fxgl.entity.Entity;
 import hex.entities.Facing;
 import hex.entities.spells.SpellType;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 
 /**
  * A wrapper class for the player entity to provide more useful methods
@@ -48,5 +49,9 @@ public class PlayerWrapper {
 
     public void setCastingTowardsPoint(Point2D point) {
         this.castingTowards = point;
+    }
+
+    public Node getSpellInventoryNode() {
+        return playerEntity.getComponent(PlayerSpellInventoryComponent.class).getSpellInventoryGUI();
     }
 }

@@ -1,4 +1,4 @@
-package hex.entities.spells.fireball;
+package hex.entities.spells.windstorm;
 
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.ProjectileComponent;
@@ -8,23 +8,17 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import hex.Hex;
-import hex.entities.spells.SpellType;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
-/**
- * An entity factory for producing fireball entities
- */
-public class FireballFactory implements EntityFactory {
-    public static final String KEY = "fireball";
-    public static final int DAMAGE = 4;
-    private static final int SPEED = 1000;
+public class WindstormFactory implements EntityFactory {
+    public static final String KEY = "windstorm";
+    private static final int SPEED = 500;
 
     @Spawns(KEY)
-    public Entity buildFireball(SpawnData data) {
-        return FXGL.entityBuilder(data)
-                .type(SpellType.FIREBALL)
+    public Entity buildWindstorm(SpawnData spawnData) {
+        return FXGL.entityBuilder(spawnData)
                 .viewWithBBox(getView())
                 .with(new ProjectileComponent(Hex.getPlayer().getCastingTowardsPoint(), SPEED))
                 .with(new CollidableComponent(true))
@@ -32,6 +26,6 @@ public class FireballFactory implements EntityFactory {
     }
 
     public static Node getView() {
-        return new Circle(10, 10, 10, Color.ORANGE);
+        return new Rectangle(10, 10, Color.YELLOW);
     }
 }

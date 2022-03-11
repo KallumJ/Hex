@@ -10,6 +10,7 @@ import hex.entities.collisions.FireballGoblinCollider;
 import hex.entities.goblin.GoblinFactory;
 import hex.entities.player.PlayerFactory;
 import hex.entities.player.PlayerWrapper;
+import hex.entities.spells.windstorm.WindstormFactory;
 import hex.entities.spells.fireball.FireballFactory;
 import hex.menus.MenuFactory;
 import javafx.geometry.Point2D;
@@ -52,6 +53,8 @@ public class Hex extends GameApplication {
     protected void initUI() {
         Text text = WAVE_MANAGER.getCurrentWaveText();
         FXGL.getGameScene().addUINode(text);
+
+        FXGL.getGameScene().addUINode(player.getSpellInventoryNode());
     }
 
 
@@ -60,6 +63,7 @@ public class Hex extends GameApplication {
         FXGL.getGameWorld().addEntityFactory(new PlayerFactory());
         FXGL.getGameWorld().addEntityFactory(new GoblinFactory());
         FXGL.getGameWorld().addEntityFactory(new FireballFactory());
+        FXGL.getGameWorld().addEntityFactory(new WindstormFactory());
 
         FXGL.setLevelFromMap("map.tmx");
 
