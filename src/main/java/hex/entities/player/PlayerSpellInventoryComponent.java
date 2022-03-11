@@ -22,8 +22,8 @@ public class PlayerSpellInventoryComponent extends Component {
 
     private final List<SpellType> spells;
     private final List<StackPane> spellNodes;
-    private int selectedSpell;
     private final Rectangle selectedGUI;
+    private int selectedSpell;
 
     public PlayerSpellInventoryComponent() {
         this.spells = new ArrayList<>();

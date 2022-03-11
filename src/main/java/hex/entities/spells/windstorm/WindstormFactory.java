@@ -16,6 +16,10 @@ public class WindstormFactory implements EntityFactory {
     public static final String KEY = "windstorm";
     private static final int SPEED = 500;
 
+    public static Node getView() {
+        return new Rectangle(10, 10, Color.YELLOW);
+    }
+
     @Spawns(KEY)
     public Entity buildWindstorm(SpawnData spawnData) {
         return FXGL.entityBuilder(spawnData)
@@ -23,9 +27,5 @@ public class WindstormFactory implements EntityFactory {
                 .with(new ProjectileComponent(Hex.getPlayer().getCastingTowardsPoint(), SPEED))
                 .with(new CollidableComponent(true))
                 .build();
-    }
-
-    public static Node getView() {
-        return new Rectangle(10, 10, Color.YELLOW);
     }
 }

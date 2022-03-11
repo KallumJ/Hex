@@ -8,7 +8,6 @@ import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import hex.entities.EnemyType;
 import hex.entities.EntityHealthComponent;
-import hex.entities.EntityType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
