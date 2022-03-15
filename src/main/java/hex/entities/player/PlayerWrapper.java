@@ -5,6 +5,7 @@ import hex.entities.Facing;
 import hex.entities.spells.SpellType;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.layout.StackPane;
 
 /**
  * A wrapper class for the player entity to provide more useful methods
@@ -53,5 +54,9 @@ public class PlayerWrapper {
 
     public Node getSpellInventoryNode() {
         return playerEntity.getComponent(PlayerSpellInventoryComponent.class).getSpellInventoryGUI();
+    }
+
+    public StackPane getSelectedSpellNode() {
+        return playerEntity.getComponent(PlayerSpellInventoryComponent.class).getSelectedSpellNode();
     }
 }

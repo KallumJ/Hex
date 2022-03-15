@@ -18,6 +18,7 @@ import java.util.List;
  * A component for players to store and select spells
  */
 public class PlayerSpellInventoryComponent extends Component {
+    public static final double SPELL_SIZE = 40;
     private static final SpellType STARTER = SpellType.FIREBALL;
 
     private final List<SpellType> spells;
@@ -28,7 +29,7 @@ public class PlayerSpellInventoryComponent extends Component {
     public PlayerSpellInventoryComponent() {
         this.spells = new ArrayList<>();
         this.spellNodes = new ArrayList<>();
-        Rectangle selectedSquare = new Rectangle(40, 40, Color.TRANSPARENT);
+        Rectangle selectedSquare = new Rectangle(SPELL_SIZE, SPELL_SIZE, Color.TRANSPARENT);
         selectedSquare.setStroke(Color.LIGHTGRAY);
         this.selectedGUI = selectedSquare;
 
@@ -39,34 +40,32 @@ public class PlayerSpellInventoryComponent extends Component {
 
         // Increment/decrement the spell based on scroll wheel movements
         FXGL.getInput().addEventHandler(ScrollEvent.SCROLL, scrollEvent -> {
+            int previous = selectedSpell;
+
             if (scrollEvent.getDeltaY() > 0 || scrollEvent.getDeltaX() > 0) {
                 incrementSelectedSpell();
             } else {
                 decrementSelectedSpell();
             }
+
+            setSelectedSpellGUI(previous, selectedSpell);
         });
     }
 
     private void decrementSelectedSpell() {
-        int previous = selectedSpell;
-
         if (selectedSpell == 0) {
             selectedSpell = spells.size() - 1;
         } else {
             selectedSpell--;
         }
-        setSelectedSpellGUI(previous, selectedSpell);
     }
 
     private void incrementSelectedSpell() {
-        int previous = selectedSpell;
-
         if (selectedSpell == spells.size() - 1) {
             selectedSpell = 0;
         } else {
             selectedSpell++;
         }
-        setSelectedSpellGUI(previous, selectedSpell);
     }
 
     private void setSelectedSpellGUI(int previous, int selectedSpell) {
@@ -99,5 +98,9 @@ public class PlayerSpellInventoryComponent extends Component {
         }
 
         return container;
+    }
+
+    public StackPane getSelectedSpellNode() {
+        return spellNodes.get(selectedSpell);
     }
 }
