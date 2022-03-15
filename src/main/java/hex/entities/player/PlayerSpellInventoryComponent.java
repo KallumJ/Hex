@@ -97,6 +97,8 @@ public class PlayerSpellInventoryComponent extends Component {
             container.getChildren().add(spellNode);
         }
 
+        container.setTranslateX((FXGL.getAppWidth() / 2.0) - SPELL_SIZE);
+
         return container;
     }
 
