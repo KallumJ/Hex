@@ -12,16 +12,18 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A component for the player to cast a spell
  */
 public class PlayerCastingComponent extends Component {
-    private boolean isOnCooldown;
     private static final double COUNTDOWN_INTERVAL = 100;
     private final Set<SpellType> spellsOnCooldown;
+    private boolean isOnCooldown;
 
 
     public PlayerCastingComponent() {
