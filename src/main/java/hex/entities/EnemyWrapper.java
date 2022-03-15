@@ -1,6 +1,7 @@
 package hex.entities;
 
 import com.almasb.fxgl.entity.Entity;
+import hex.entities.components.EntityHealthComponent;
 
 /**
  * A class to provide useful methods for enemy entities

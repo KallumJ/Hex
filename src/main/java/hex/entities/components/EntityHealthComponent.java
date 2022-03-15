@@ -1,4 +1,4 @@
-package hex.entities;
+package hex.entities.components;
 
 import com.almasb.fxgl.entity.component.Component;
 import hex.Hex;

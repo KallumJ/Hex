@@ -73,7 +73,7 @@ public class Hex extends GameApplication {
 
         FXGL.spawn(EntityType.PLAYER.toString(), new Point2D(700, 700));
 
-        player = new PlayerWrapper(FXGL.getGameWorld().getEntitiesByType(EntityType.PLAYER).get(0));
+        player = new PlayerWrapper(FXGL.getGameWorld().getSingleton(EntityType.PLAYER));
 
         WAVE_MANAGER.generateWave();
     }
