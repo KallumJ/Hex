@@ -23,9 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PlayerCastingComponent extends Component {
     private static final double COUNTDOWN_INTERVAL = 100;
     private final Set<SpellType> spellsOnCooldown;
-    private boolean isOnCooldown;
-
-
+    
     public PlayerCastingComponent() {
         this.spellsOnCooldown = new HashSet<>();
 
