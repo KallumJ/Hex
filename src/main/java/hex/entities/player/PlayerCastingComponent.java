@@ -10,6 +10,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,9 +21,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PlayerCastingComponent extends Component {
     private boolean isOnCooldown;
     private static final double COUNTDOWN_INTERVAL = 100;
+    private final Set<SpellType> spellsOnCooldown;
 
 
     public PlayerCastingComponent() {
+        this.spellsOnCooldown = new HashSet<>();
+
         FXGL.getInput().addEventHandler(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
             // Set the point we are casting towards
             Point2D pointClicked = new Point2D(mouseEvent.getX(), mouseEvent.getY());
@@ -33,15 +38,25 @@ public class PlayerCastingComponent extends Component {
     }
 
     private void castSpell() {
-        if (!isOnCooldown) {
-            isOnCooldown = true;
-            SpellType spellType = Hex.getPlayer().getSelectedSpell();
+        SpellType spellType = Hex.getPlayer().getSelectedSpell();
+
+        if (!isSpellOnCooldown(spellType)) {
+            setOnCooldown(spellType);
+
 
             applyCooldownEffect();
 
             FXGL.spawn(spellType.toString(), getEntity().getCenter());
         }
 
+    }
+
+    private void setOnCooldown(SpellType spellType) {
+        spellsOnCooldown.add(spellType);
+    }
+
+    private boolean isSpellOnCooldown(SpellType spellType) {
+        return spellsOnCooldown.contains(spellType);
     }
 
     private void applyCooldownEffect() {
@@ -72,7 +87,7 @@ public class PlayerCastingComponent extends Component {
             // If we have ran for the full cooldown length
             if (runtime.get() == spellType.getCooldown()) {
                 // Take the player off cooldown
-                isOnCooldown = false;
+                removeSpellFromCooldown(spellType);
 
                 // Remove the effect
                 spellNode.getChildren().remove(cooldownEffect);
@@ -84,5 +99,9 @@ public class PlayerCastingComponent extends Component {
 
         // Add the effect to the inventory
         spellNode.getChildren().add(cooldownEffect);
+    }
+
+    private void removeSpellFromCooldown(SpellType spellType) {
+        spellsOnCooldown.remove(spellType);
     }
 }
